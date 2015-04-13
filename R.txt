@@ -1,0 +1,19 @@
+##deal with the raw data to a properly format
+x<-read.table(file="./data/household_power_consumption.txt",header=TRUE,sep=";",na.strings="?",nrows=2,075,260)
+a<-x[(x$Date=="1/2/2007"),]
+b<-x[(x$Date=="2/2/2007"),]
+
+
+##houseelec will be the required tidy data
+houseelec<-merge(a,b,all=TRUE)
+ write.table(houseelec,file="./data/houseelec.txt",row.names=FALSE,quote=FALSE)
+
+
+##plotting
+gap<-unclass(houseelec$Global_active_power)
+hist(gap,xlab="Global Active Power(kilowatts)",main="Global Active Power",col="red")
+dev.copy(png,file="plot1.png")
+
+%d/%m/%y
+dd<-as.Date(dc,"%a %b %d")
+%y/%m/%d
